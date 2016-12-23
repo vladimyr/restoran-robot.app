@@ -37,6 +37,7 @@ fetchPosts(url, 5)
     let html = posts.map(post => {
       let content = post.content;
       content = content.split('\n').slice(1).join('\n');
+      content = content.replace(/\d+kn/g, price => `<span class="price"> ${ price }</span>`);
       let data = { timestamp: post.timestamp, url: post.url, content };
       return template(data);
     }).join('\n');
