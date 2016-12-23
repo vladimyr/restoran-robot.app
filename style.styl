@@ -9,25 +9,22 @@ $bg-color = #e9ebee
 $timestamp-color = #90949c
 $fb-link-color = #4267b2
 
-#output {
+.output
   margin 0 auto
   max-width 502px
   display none
-}
 
-html, body {
+html, body
   margin 0
   padding 0
   width 100%
   height 100%
   background $bg-color
-}
 
-.spinner > div {
+.spinner > div
   background-color $accent-color;
-}
 
-.post {
+.post
   font-family Helvetica, Arial, sans-serif
   padding 12px
   margin $post-margin
@@ -37,16 +34,14 @@ html, body {
   background-color #fff
   color #1d2129
 
-  .btn-phone {
+  .btn-phone
     display none
-  }
 
-  .timestamp {
+  .timestamp
     color $timestamp-color
     font-size $font-size
-  }
 
-  .content pre {
+  .content pre
     font-family 'Roboto', sans-serif
     color #5f5d5d
     font-size 14px
@@ -54,12 +49,10 @@ html, body {
     line-height 1.38
     white-space pre-wrap
 
-    & .price {
+    & .price
       font-weight 700
-    }
-  }
 
-  a {
+  a
     cursor pointer
     color $fb-link-color
     text-decoration none
@@ -68,28 +61,21 @@ html, body {
     font-size $font-size
     font-weight bold
 
-    &:hover {
+    &:hover
       background-color $fb-link-color
       color #fff
-    }
-  }
 
-  &.today {
+  &.today
     border $post-accent-border
     border-radius 0
     background $post-accent-color
 
-    .btn-phone {
+    .btn-phone
       display inline-block
       float right
-    }
 
-    .timestamp {
+    .timestamp
       color #d04318
-    }
 
-    .content pre {
+    .content pre
       color #424040
-    }
-  }
-}
