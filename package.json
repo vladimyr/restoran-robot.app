@@ -1,0 +1,33 @@
+{
+  "name": "dajyst.app",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p",
+    "build-dev": "webpack -d",
+    "deploy": "surge ./dist/ dajyst.surge.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vladimyr",
+  "license": "MIT",
+  "dependencies": {
+    "autoprefixer": "^6.6.0",
+    "fecha": "^2.3.0",
+    "url-join": "^1.1.0",
+    "whatwg-fetch": "^2.0.1",
+    "zepto": "^1.2.0"
+  },
+  "devDependencies": {
+    "buble-loader": "^0.4.0",
+    "css-loader": "^0.26.1",
+    "exports-loader": "^0.6.3",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "imports-loader": "^0.7.0",
+    "postcss-loader": "^1.2.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^2.4.0",
+    "surge": "^0.18.0",
+    "webpack": "^1.14.0"
+  }
+}
