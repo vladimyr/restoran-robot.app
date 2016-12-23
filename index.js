@@ -11,24 +11,35 @@ const { readPosts } = require('./scraper');
 
 const proxy = 'https://cors.now.sh/';
 
+const url = 'https://facebook.com/dajyst/posts';
+const phone = '+385957488338';
+
 const timestampFormat = 'MMMM D [at] H:mm';
 const date = timestamp => fecha.format(new Date(timestamp), timestampFormat);
+const isToday = timestamp => (new Date()).getDate() === (new Date(timestamp)).getDate();
+
+const getClass = post => 'post' + (isToday(post.timestamp) ? ' today' : '');
 
 const template = post => `
-  <div class="post">
-    <span class="timestamp">${ date(post.timestamp) }</span>
+  <div class="${ getClass(post) }">
+    <span class="timestamp"><i class="icon-clock"></i> ${ date(post.timestamp) }</span>
     <div class="content"><pre>${ post.content }<pre></div>
     <a href=${ post.url } target="_blank">Open on Facebook</a>
+    <a class="btn-phone" href="tel:${ phone }" target="_blank"><i class="icon-phone"></i> Order</a>
   </div>
 `;
 
 let $spinner = $('#spinner');
 let $output = $('#output');
 
-let url = 'https://facebook.com/dajyst/posts';
-fetchPosts(url, 2)
+fetchPosts(url, 5)
   .then(posts => {
-    let html = posts.map(post => template(post)).join('\n');
+    let html = posts.map(post => {
+      let content = post.content;
+      content = content.split('\n').slice(1).join('\n');
+      let data = { timestamp: post.timestamp, url: post.url, content };
+      return template(data);
+    }).join('\n');
     $output.html(html).show();
     $spinner.hide();
   });

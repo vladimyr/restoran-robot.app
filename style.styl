@@ -1,12 +1,16 @@
 $font-size = 12px
 $post-margin = 20px
+
+$post-accent-border = 1px solid #cc664f
+$post-accent-color = #ffe8dd
+
 $bg-color = #e9ebee
 $timestamp-color = #90949c
 $fb-link-color = #4267b2
 
 #output {
-  width 502px
-  max-width calc(100px - $post-margin)
+  margin 0 auto
+  max-width 502px
   display none
 }
 
@@ -27,6 +31,10 @@ html, body {
   border-radius 3px
   background-color #fff
   color #1d2129
+
+  .btn-phone {
+    display none
+  }
 
   .timestamp {
     color $timestamp-color
@@ -53,6 +61,25 @@ html, body {
     &:hover {
       background-color $fb-link-color
       color #fff
+    }
+  }
+
+  &.today {
+    border $post-accent-border
+    border-radius 0
+    background $post-accent-color
+
+    .btn-phone {
+      display inline-block
+      float right
+    }
+
+    .timestamp {
+      color #d04318
+    }
+
+    .content pre {
+      color #424040
     }
   }
 }

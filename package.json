@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p",
     "build-dev": "webpack -d",
-    "dev-server": "webpack-dev-server --port 7878 --content-base ./dist/",
+    "dev-server": "webpack-dev-server -d --port 7878 --content-base ./dist/",
     "deploy": "surge ./dist/ dajyst.surge.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,6 +24,7 @@
     "css-loader": "^0.26.1",
     "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "imports-loader": "^0.7.0",
     "postcss-loader": "^1.2.1",
     "stylus": "^0.54.5",

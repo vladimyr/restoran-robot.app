@@ -10,7 +10,7 @@ const autoprefixerConfig = {
   cascade: false
 };
 
-// Preload js with buble.
+// Preload js with buble
 let preLoaders = [
   { test: /\.js$/, exclude: /mimetype\.js$/, loader: 'buble' }
 ];

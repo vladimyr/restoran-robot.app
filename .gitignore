@@ -4,6 +4,8 @@ node_modules/
 # distribution folder
 dist/*
 !dist/index.html
+!dist/icomoon.css
+!dist/fonts/
 
 # OS generated stuff
 .DS_Store
