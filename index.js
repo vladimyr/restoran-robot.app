@@ -34,16 +34,18 @@ let $output = $('.output');
 
 fetchPosts(url, 5)
   .then(posts => {
-    let html = posts.map(post => {
-      let content = post.content;
-      content = content.split('\n').slice(1).join('\n');
-      content = content.replace(/\d+kn/g, price => `<span class="price"> ${ price }</span>`);
-      let data = { timestamp: post.timestamp, url: post.url, content };
-      return template(data);
-    }).join('\n');
+    let html = posts.map(post => render(post)).join('\n');
     $output.html(html).show();
     $spinner.hide();
   });
+
+function render(post) {
+  let content = post.content;
+  content = content.split('\n').slice(1).join('\n');
+  content = content.replace(/\d+kn/g, price => `<span class="price"> ${price}</span>`);
+  let data = { timestamp: post.timestamp, url: post.url, content };
+  return template(data);
+}
 
 function fetchPosts(fbUrl, limit) {
   let url = urlJoin(proxy, fbUrl);
