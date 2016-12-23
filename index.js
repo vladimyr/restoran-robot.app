@@ -29,8 +29,8 @@ const template = post => `
   </div>
 `;
 
-let $spinner = $('#spinner');
-let $output = $('#output');
+let $spinner = $('.spinner');
+let $output = $('.output');
 
 fetchPosts(url, 5)
   .then(posts => {
