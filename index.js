@@ -11,9 +11,12 @@ const { readPosts } = require('./scraper');
 
 const proxy = 'https://cors.now.sh/';
 
+const timestampFormat = 'MMMM D [at] H:mm';
+const date = timestamp => fecha.format(new Date(timestamp), timestampFormat);
+
 const template = post => `
   <div class="post">
-    <span class="timestamp">${ fecha.format(new Date(post.timestamp)) }</span>
+    <span class="timestamp">${ date(post.timestamp) }</span>
     <div class="content"><pre>${ post.content }<pre></div>
     <a href=${ post.url } target="_blank">Open on Facebook</a>
   </div>

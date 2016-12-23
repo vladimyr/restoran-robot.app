@@ -1,6 +1,62 @@
+$font-size = 12px
+$post-margin = 20px
+$bg-color = #e9ebee
+$timestamp-color = #90949c
+$fb-link-color = #4267b2
+
 #output {
-    display: none
+  width 502px
+  max-width calc(100px - $post-margin)
+  display none
 }
+
+html, body {
+  margin 0
+  padding 0
+  width 100%
+  height 100%
+  background $bg-color
+}
+
+.post {
+  font-family Helvetica, Arial, sans-serif
+  padding 12px
+  margin $post-margin
+  border 1px solid
+  border-color #e5e6e9 #dfe0e4 #d0d1d5
+  border-radius 3px
+  background-color #fff
+  color #1d2129
+
+  .timestamp {
+    color $timestamp-color
+    font-size $font-size
+  }
+
+  .content pre {
+    font-family: 'Roboto', sans-serif
+    color: #5f5d5d
+    font-size: 14px
+    font-weight: normal
+    line-height: 1.38
+  }
+
+  a {
+    cursor pointer
+    color $fb-link-color
+    text-decoration none
+    padding 2px 4px
+    border-bottom 1px solid $fb-link-color
+    font-size $font-size
+    font-weight bold
+
+    &:hover {
+      background-color $fb-link-color
+      color #fff
+    }
+  }
+}
+
 
 /* taken from http://tobiasahlin.com/spinkit/ */
 #spinner {
