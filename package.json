@@ -31,6 +31,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
     "surge": "^0.18.0",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
