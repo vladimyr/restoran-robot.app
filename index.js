@@ -1,5 +1,7 @@
 'use strict';
 
+window.Promise = window.Promise || require('pinkie-promise');
+
 require('./style.styl');
 
 const $ = require('zepto');

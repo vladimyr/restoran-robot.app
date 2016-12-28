@@ -2,6 +2,7 @@
   "esversion": 6,
   "undef": true,
   "unused": true,
+  "browser": true,
   "node": true,
   "predef": [
     "-fetch"
