@@ -24,6 +24,20 @@ html, body
 .spinner > div
   background-color $accent-color;
 
+.btn
+  display inline-block
+  cursor pointer
+  color $fb-link-color
+  text-decoration none
+  padding 2px 4px
+  border-bottom 1px solid $fb-link-color
+  font-size $font-size
+  font-weight bold
+
+  &:hover
+    background-color $fb-link-color
+    color #fff
+
 .post
   font-family Helvetica, Arial, sans-serif
   padding 12px
@@ -63,34 +77,21 @@ html, body
       font-weight 700
       padding-left 4px
 
-  .btn
-    cursor pointer
-    color $fb-link-color
-    text-decoration none
-    padding 2px 4px
-    border-bottom 1px solid $fb-link-color
-    font-size $font-size
-    font-weight bold
+.post.standard .content
+  border-left 5px solid lighten($fb-link-color, 40%)
+  padding-left 6px
 
-    &:hover
-      background-color $fb-link-color
-      color #fff
+.post.menu.today
+  border $post-accent-border
+  border-radius 0
+  background $post-accent-color
 
-  &.standard .content
-    border-left 5px solid lighten($fb-link-color, 40%)
-    padding-left 6px
+  .btn-phone
+    display inline-block
+    float right
 
-  &.menu.today
-    border $post-accent-border
-    border-radius 0
-    background $post-accent-color
+  .timestamp
+    color #d04318
 
-    .btn-phone
-      display inline-block
-      float right
-
-    .timestamp
-      color #d04318
-
-    .content
-      color #424040
+  .content
+    color #424040
