@@ -16,7 +16,10 @@ const proxy = 'https://cors.now.sh/';
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
 
-const isDailyMenu = post => (/^Danas u ponudi\s*:/i).test(post.content);
+const reMenuHeading = /^Danas u ponudi\s*:\s*/i;
+const rePrice = /\s*(\d+)?(?:kn)\s*/;
+
+const isDailyMenu = post => reMenuHeading.test(post.content);
 
 const timestampFormat = 'MMMM D [at] H:mm';
 const date = timestamp => fecha.format(new Date(timestamp), timestampFormat);
@@ -70,11 +73,25 @@ function parsePost(post) {
     return post;
   }
 
-  let lines = post.content.split('\n').slice(1);
+  let menu = post.content.replace(reMenuHeading, '');
+  post.offers = parseMenu(menu);
   post.type = 'menu';
-  post.offers = lines.map(line => {
-    let [ name, price ] = line.trim().split(/\s*(\d+)?(?:kn)$/);
-    return { name, price };
-  });
   return post;
+}
+
+function parseMenu(menu) {
+  let offers = [];
+  let tokens = menu.split(rePrice);
+
+  let i = 0;
+  let len = tokens.length - 1;
+  while (i < len) {
+    offers.push({
+      name: tokens[i],
+      price: parseInt(tokens[i + 1], 10)
+    });
+    i += 2;
+  }
+
+  return offers;
 }
