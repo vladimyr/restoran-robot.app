@@ -41,16 +41,27 @@ html, body
     color $timestamp-color
     font-size $font-size
 
-  .content pre
+  .content
     font-family 'Roboto', sans-serif
     color #5f5d5d
+    margin 1em 0 1em
     font-size 14px
     font-weight normal
     line-height 1.38
     white-space pre-wrap
 
+    & .menu
+      margin 0
+      padding 0
+      list-style none
+      white-space normal
+
+    & .offer
+      word-break break-word
+
     & .price
       font-weight 700
+      padding-left 4px
 
   a
     cursor pointer
@@ -65,7 +76,7 @@ html, body
       background-color $fb-link-color
       color #fff
 
-  &.today
+  &.menu.today
     border $post-accent-border
     border-radius 0
     background $post-accent-color

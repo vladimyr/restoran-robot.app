@@ -1,0 +1,12 @@
+{
+  "esversion": 6,
+  "undef": true,
+  "unused": true,
+  "node": true,
+  "predef": [
+    "-fetch"
+  ],
+  "eqeqeq": true,
+  "newcap": false,
+  "globals": {}
+}
