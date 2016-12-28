@@ -30,7 +30,7 @@ const renderMenu = offers => template(`
   ${ offers.map(({ name, price }) => `
     <li class="offer">
       <span class="name">${ name }</span>
-      <span class="price">  ${ price }kn</span>
+      <span class="price">${ price }kn</span>
     </li>`).join('\n')
   }
   </ul>`);
@@ -39,8 +39,8 @@ const renderPost = post => template(`
   <div class="${ getClass(post) }">
     <span class="timestamp"><i class="icon-clock"></i> ${ date(post.timestamp) }</span>
     <div class="content">${ post.offers ? renderMenu(post.offers) : post.content }</div>
-    <a href=${ post.url } target="_blank">Open on Facebook</a>
-    <a class="btn-phone" href="tel:${ phone }" target="_blank"><i class="icon-phone"></i> Order</a>
+    <a class="btn" href=${ post.url } target="_blank">Open on Facebook</a>
+    <a class="btn btn-phone" href="tel:${ phone }" target="_blank"><i class="icon-phone"></i> Order</a>
   </div>`);
 
 let $spinner = $('.spinner');

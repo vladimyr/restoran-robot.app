@@ -63,7 +63,7 @@ html, body
       font-weight 700
       padding-left 4px
 
-  a
+  .btn
     cursor pointer
     color $fb-link-color
     text-decoration none
@@ -75,6 +75,10 @@ html, body
     &:hover
       background-color $fb-link-color
       color #fff
+
+  &.standard .content
+    border-left 5px solid lighten($fb-link-color, 40%)
+    padding-left 6px
 
   &.menu.today
     border $post-accent-border
@@ -88,5 +92,5 @@ html, body
     .timestamp
       color #d04318
 
-    .content pre
+    .content
       color #424040
