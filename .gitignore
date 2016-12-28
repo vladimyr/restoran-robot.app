@@ -6,7 +6,7 @@ dist/*
 !dist/index.html
 !dist/icomoon.css
 !dist/spinkit.css
-!dist/fonts/
+!dist/font/
 
 # OS generated stuff
 .DS_Store

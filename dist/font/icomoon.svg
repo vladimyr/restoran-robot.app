@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2016 by original authors @ fontello.com</metadata>
+<defs>
+<font id="icomoon" horiz-adv-x="1000" >
+<font-face font-family="icomoon" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="phone" unicode="&#xe800;" d="M0 615q0 50 28 76l138 138q45 37 77-13l113-211q18-39-14-71l-51-52q-5-6-5-14 25-98 132-195l31-30t36-34 34-26 41-25 40-14q20-6 27 2l61 60q39 30 72 12l203-121q22-14 25-37t-13-39l-141-139q-27-27-74-27-140 4-318 121-258 185-375 406-72 151-67 233z" horiz-adv-x="988" />
+
+<glyph glyph-name="clock" unicode="&#xe801;" d="M0 349q0 188 134 322t322 134 321-134 133-322-133-321-321-133-322 133-134 321z m119 0q0-140 99-238t238-99 238 99 99 238-99 238-238 99-238-99-99-238z m172-69l0 117 117 0 0 213 117 0 0-330-234 0z" horiz-adv-x="910" />
+</font>
+</defs>
+</svg>
