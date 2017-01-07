@@ -6,12 +6,14 @@ module.exports = { readPosts };
 
 function readPosts($, $html, limit=10) {
   let $articles = $html.find('.userContentWrapper').slice(0, limit);
-  let posts = $articles.map((_, el) => {
+  let posts = [];
+  $articles.each((_, el) => {
     let $el = $(el);
     let content = getContent($, $el);
+    if (!content) return;
     let { url, timestamp } = getMetadata($el);
-    return { content, url, timestamp };
-  }).get();
+    posts.push({ content, url, timestamp });
+  });
   return posts;
 }
 
