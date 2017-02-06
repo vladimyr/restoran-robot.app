@@ -4,8 +4,8 @@ const urlJoin = require('url-join');
 
 module.exports = { readPosts };
 
-function readPosts($, $html, limit=10) {
-  let $articles = $html.find('.userContentWrapper').slice(0, limit);
+function readPosts($, $html, limit=10, selector='[role=article]') {
+  let $articles = $html.find(selector).slice(0, limit);
   let posts = [];
   $articles.each((_, el) => {
     let $el = $(el);
