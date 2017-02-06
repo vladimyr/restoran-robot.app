@@ -1,6 +1,9 @@
 # deps
 node_modules/
 
+# editor
+.vscode
+
 # distribution folder
 dist/*
 !dist/index.html
