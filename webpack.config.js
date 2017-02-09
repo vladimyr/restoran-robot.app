@@ -30,7 +30,5 @@ module.exports = {
   },
   postcss() { return [ autoprefixer(autoprefixerConfig) ]; },
   module: { loaders, preLoaders },
-  plugins: [
-    new ExtractTextPlugin('style.css')
-  ]
+  plugins: [ new ExtractTextPlugin('style.css')]
 };

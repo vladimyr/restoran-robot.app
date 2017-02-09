@@ -5,7 +5,6 @@ window.Promise = window.Promise || require('pinkie-promise');
 require('./style.styl');
 
 const $ = require('zepto');
-require('zepto/src/stack.js');
 const h = require('hyperscript');
 const fetch = require('whatwg-fetch');
 const urlJoin = require('url-join');
@@ -66,7 +65,7 @@ function fetchPosts(fbUrl, limit) {
   return fetch(url)
     .then(resp => resp.json())
     .then(body => $(`${ body }</body></html>`))
-    .then($html => readPosts($, $html, limit, postSelector))
+    .then($html => readPosts($html, limit, postSelector))
     .then(posts => posts.map(post => parsePost(post)));
 }
 

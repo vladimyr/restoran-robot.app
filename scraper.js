@@ -1,15 +1,16 @@
 'use strict';
 
+const $ = require('zepto');
 const urlJoin = require('url-join');
 
 module.exports = { readPosts };
 
-function readPosts($, $html, limit=10, selector='[role=article]') {
+function readPosts($html, limit=10, selector='[role=article]') {
   let $articles = $html.find(selector).slice(0, limit);
   let posts = [];
   $articles.each((_, el) => {
     let $el = $(el);
-    let content = getContent($, $el);
+    let content = getContent($el);
     if (!content) return;
     let { url, timestamp } = getMetadata($el);
     posts.push({ content, url, timestamp });
@@ -17,24 +18,19 @@ function readPosts($, $html, limit=10, selector='[role=article]') {
   return posts;
 }
 
-function getContent($, $article) {
+const getText = $el => $el.text().replace(/\n\s*/g, '\n').trim();
+
+function getContent($article) {
   let $content = $article.find('.userContent p');
   let chunks = $content.map((_, el) => {
-    let $el = $(el);
-    return getText($el);
+    let $chunk = $(el);
+    // remove all hidden parts
+    $chunk.find('.text_exposed_hide').remove();
+    // replace all <br>-s with line feeds
+    $chunk.find('br').replaceWith('\n');
+    return getText($chunk);
   }).get();
   return chunks.join('\n');
-}
-
-function getText($paragraph) {
-  return $paragraph
-    // replace all <br>-s with line feeds
-    .find('br').replaceWith('\n').end()
-    // remove all hidden parts
-    .find('.text_exposed_hide').remove().end()
-    // remove leading spaces
-    .text().replace(/\n\s*/g, '\n')
-    .trim();
 }
 
 function getMetadata($article) {
