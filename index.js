@@ -16,8 +16,6 @@ const proxy = 'https://cors.now.sh/';
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
 
-const postSelector = '.fbUserContent';
-
 const reMenuHeading = /^Danas u ponudi\s*:\s*/i;
 const rePrice = /\s*(\d+)?(?:kn)\s*/;
 
@@ -65,7 +63,7 @@ function fetchPosts(fbUrl, limit) {
   return fetch(url)
     .then(resp => resp.json())
     .then(body => $(`${ body }</body></html>`))
-    .then($html => readPosts($html, limit, postSelector))
+    .then($html => readPosts($html, limit))
     .then(posts => posts.map(post => parsePost(post)));
 }
 
