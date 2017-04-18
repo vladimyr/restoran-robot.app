@@ -11,7 +11,7 @@ const urlJoin = require('url-join');
 const fecha = require('fecha');
 const { readPosts } = require('./scraper');
 
-const proxy = 'https://cors.now.sh/';
+const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
@@ -61,7 +61,7 @@ fetchPosts(url, 5)
 function fetchPosts(fbUrl, limit) {
   let url = urlJoin(proxy, fbUrl);
   return fetch(url)
-    .then(resp => resp.json())
+    .then(resp => resp.text())
     .then(body => $(`${ body }</body></html>`))
     .then($html => readPosts($html, limit))
     .then(posts => posts.map(post => parsePost(post)));
