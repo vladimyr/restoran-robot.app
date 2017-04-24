@@ -11,7 +11,7 @@ const urlJoin = require('url-join');
 const fecha = require('fecha');
 const { readPosts } = require('./scraper');
 
-const proxy = 'https://cors-anywhere.herokuapp.com/';
+const proxy = 'https://crossorigin.me';
 
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
