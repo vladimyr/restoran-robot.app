@@ -20,6 +20,7 @@ let loaders = [
   { test: /zepto(?:\.min)?\.js$/, loader: 'imports?this=>window!exports?Zepto' },
   { test: /fetch\.js$/, loader: 'imports?self=>window!exports?window.fetch' },
   { test: /\.styl$/, loader: ExtractTextPlugin.extract('css!postcss!stylus') },
+  { test: /\.json$/, loader: 'json' }
 ];
 
 module.exports = {

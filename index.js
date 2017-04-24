@@ -10,8 +10,10 @@ const fetch = require('whatwg-fetch');
 const urlJoin = require('url-join');
 const fecha = require('fecha');
 const { readPosts } = require('./scraper');
+const { version } = require('./package.json');
 
-const proxy = 'https://crossorigin.me';
+const ua=`dajyst/${version}`;
+const proxy = 'https://goxcors.appspot.com';
 
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
@@ -59,7 +61,7 @@ fetchPosts(url, 5)
   });
 
 function fetchPosts(fbUrl, limit) {
-  let url = urlJoin(proxy, fbUrl);
+  let url = urlJoin(proxy, `/cors?header=User-Agent|${ua}&method=GET&url=${fbUrl}`);
   return fetch(url)
     .then(resp => resp.text())
     .then(body => $(`${ body }</body></html>`))
