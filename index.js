@@ -6,15 +6,12 @@ require('./style.styl');
 
 const $ = require('zepto');
 const h = require('hyperscript');
-const fetch = require('whatwg-fetch');
-const urlJoin = require('url-join');
 const fecha = require('fecha');
+const http = require('./http');
 const { readPosts } = require('./scraper');
-const { version } = require('./package.json');
+const pkg = require('./package.json');
 
-const ua=`dajyst/${version}`;
-const proxy = 'https://goxcors.appspot.com';
-
+const ua = `${pkg.name}/${pkg.version}`;
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
 
@@ -61,9 +58,7 @@ fetchPosts(url, 5)
   });
 
 function fetchPosts(fbUrl, limit) {
-  let url = urlJoin(proxy, `/cors?header=User-Agent|${ua}&method=GET&url=${fbUrl}`);
-  return fetch(url)
-    .then(resp => resp.text())
+  return http(url, { headers: { 'User-Agent': ua } })
     .then(body => $(`${ body }</body></html>`))
     .then($html => readPosts($html, limit))
     .then(posts => posts.map(post => parsePost(post)));

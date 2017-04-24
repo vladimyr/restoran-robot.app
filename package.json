@@ -7,7 +7,7 @@
     "build": "webpack -p",
     "build-dev": "webpack -d",
     "dev-server": "webpack-dev-server -d --port 7878 --content-base ./dist/",
-    "deploy": "surge ./dist/ https://dajyst.surge.sh",
+    "deploy": "npm run build && surge ./dist/ https://dajyst.surge.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "vladimyr",
