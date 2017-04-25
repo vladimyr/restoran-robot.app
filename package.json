@@ -7,11 +7,9 @@
     "build": "webpack -p",
     "build-dev": "webpack -d",
     "dev-server": "webpack-dev-server -d --port 7878 --content-base ./dist/",
-    "favicons:generate": "real-favicon generate ./faviconDescription.json ./dist/faviconData.json ./dist/",
-    "favicons:inject": "real-favicon inject ./dist/faviconData.json ./dist/ ./dist/index.html",
-    "html:backup": "cp ./dist/index.html ./dist/index.html.bak",
-    "html:cleanup": "mv ./dist/index.html.bak ./dist/index.html",
-    "deploy": "npm run build && npm run html:backup && npm run favicons:generate && npm run favicons:inject && surge ./dist/ https://dajyst.surge.sh && npm run html:cleanup",
+    "favicons:generate": "real-favicon generate ./favicons.config.json ./dist/favicons.json ./dist/",
+    "favicons:inject": "real-favicon inject ./dist/favicons.json ./dist/ ./dist/index.html",
+    "deploy": "npm run build && npm run favicons:generate && npm run favicons:inject && surge ./dist/ https://dajyst.surge.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "vladimyr",
@@ -28,6 +26,7 @@
   "devDependencies": {
     "buble-loader": "^0.4.0",
     "cli-real-favicon": "0.0.6",
+    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.1",
     "exports-loader": "^0.6.3",
     "extract-text-webpack-plugin": "^1.0.1",
