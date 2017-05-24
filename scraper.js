@@ -3,10 +3,15 @@
 const $ = require('zepto');
 const urlJoin = require('url-join');
 
+const selectors = [
+  '.fbUserContent', // primary
+  '[role=article]'  // fallback
+];
+
 module.exports = { readPosts };
 
-function readPosts($html, limit=10, selector='[role=article]') {
-  let $articles = $html.find(selector).slice(0, limit);
+function readPosts($html, limit=10) {
+  let $articles = find($html, selectors).slice(0, limit);
   let posts = [];
   $articles.each((_, el) => {
     let $el = $(el);
@@ -16,6 +21,21 @@ function readPosts($html, limit=10, selector='[role=article]') {
     posts.push({ content, url, timestamp });
   });
   return posts;
+}
+
+function find(parent, selectors=[]) {
+  let $parent = $(parent);
+  let $elements = $();
+
+  let i = 0;
+  let len = selectors.length;
+  while (i < len) {
+    $elements = $parent.find(selectors[i]);
+    if ($elements.length > 0) return $elements;
+    i += 1;
+  }
+
+  return $elements;
 }
 
 const getText = $el => $el.text().replace(/\n\s*/g, '\n').trim();
