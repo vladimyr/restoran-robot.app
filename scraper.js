@@ -47,7 +47,8 @@ function getContent($article) {
     $chunk.find('.text_exposed_hide').remove();
     // replace all <br>-s with line feeds
     $chunk.find('br').replaceWith('\n');
-    return getText($chunk);
+    const text = getText($chunk);
+    return reformatText(text);
   }).get();
   return chunks.join('\n');
 }
@@ -60,4 +61,11 @@ function getMetadata($article) {
   const timestamp = $abbr.attr('data-utime') * 1000;
 
   return { url, timestamp };
+}
+
+function reformatText(text='') {
+  // adjust spaces around braces
+  return text
+    .replace(/\s*\(\s*/g, ' (')
+    .replace(/\s*\)\s*/g, ') ');
 }
