@@ -3,26 +3,38 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 
-// Autoprefixer config
-const autoprefixerConfig = {
-  browsers: [ 'last 2 versions', 'ie 10', 'ie 11' ],
-  cascade: false
-};
+const postcss = {
+  loader: 'postcss-loader',
+  options: {
+    sourceMap: true,
+    plugins: loader => [
+      require('autoprefixer')({
+        browsers: [ 'last 2 versions', 'ie 10', 'ie 11' ],
+        cascade: false
+      })
+    ]
+  }
+}
 
-// Preload js with buble
-let preLoaders = [
-  { test: /\.js$/, exclude: /mimetype\.js$/, loader: 'buble' }
-];
-
-// Loaders
-let loaders = [
-  { test: /zepto(?:\.min)?\.js$/, loader: 'imports?this=>window!exports?Zepto' },
-  { test: /fetch\.js$/, loader: 'imports?self=>window!exports?window.fetch' },
-  { test: /\.styl$/, loader: ExtractTextPlugin.extract('css!postcss!stylus') },
-  { test: /\.json$/, loader: 'json' }
-];
+const rules = [{
+  // Preload js with buble
+  test: /\.js$/,
+  enforce: 'pre',
+  exclude: /mimetype\.js$/,
+  loader: 'buble-loader'
+}, {
+  test: /zepto(?:\.min)?\.js$/,
+  use: ['imports-loader?this=>window', 'exports-loader?Zepto']
+}, {
+  test: /fetch\.js$/,
+  use: ['imports-loader?self=>window', 'exports-loader?window.fetch']
+}, {
+  test: /\.styl$/,
+  use: ExtractTextPlugin.extract({
+    use: ['css-loader', postcss, 'stylus-loader']
+  })
+}];
 
 module.exports = {
   entry: './index.js',
@@ -30,8 +42,7 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  postcss() { return [ autoprefixer(autoprefixerConfig) ]; },
-  module: { loaders, preLoaders },
+  module: { rules },
   plugins: [
     new ExtractTextPlugin('style.css'),
     new CopyWebpackPlugin([{ from: 'index.html' }])

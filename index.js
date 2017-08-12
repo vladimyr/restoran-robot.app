@@ -2,14 +2,14 @@
 
 window.Promise = window.Promise || require('pinkie-promise');
 
-require('./style.styl');
+import './style.styl';
 
-const $ = require('zepto');
-const h = require('hyperscript');
-const fecha = require('fecha');
-const http = require('./http');
-const { readPosts } = require('./scraper');
-const pkg = require('./package.json');
+import $ from 'zepto';
+import h from 'hyperscript';
+import fecha from 'fecha';
+import http from './http';
+import { readPosts } from './scraper';
+import pkg from './package.json';
 
 const ua = `${pkg.name}/${pkg.version}`;
 const url = 'https://facebook.com/dajyst/posts';
@@ -42,8 +42,8 @@ const renderPost = post =>
     h('a.btn.btn-phone', { href: `tel:${ phone }`, target: '_blank' },
       h('i.icon-phone'), 'Order'));
 
-let $spinner = $('.spinner');
-let $output = $('.output');
+const $spinner = $('.spinner');
+const $output = $('.output');
 
 fetchPosts(url, 5)
   .then(posts => {
@@ -70,7 +70,7 @@ function parsePost(post) {
     return post;
   }
 
-  let menu = post.content.replace(reMenuHeading, '');
+  const menu = post.content.replace(reMenuHeading, '');
   post.offers = parseMenu(menu);
   post.type = 'menu';
   return post;
@@ -78,10 +78,10 @@ function parsePost(post) {
 
 function parseMenu(menu) {
   let offers = [];
-  let tokens = menu.split(rePrice);
+  const tokens = menu.split(rePrice);
 
   let i = 0;
-  let len = tokens.length - 1;
+  const len = tokens.length - 1;
   while (i < len) {
     offers.push({
       name: tokens[i],

@@ -1,34 +1,35 @@
 'use strict';
 
-const $ = require('zepto');
-const urlJoin = require('url-join');
+import $ from 'zepto';
+import urlJoin from 'url-join';
 
 const selectors = [
   '.fbUserContent', // primary
+  '.fbUserPost',
   '[role=article]'  // fallback
 ];
 
-module.exports = { readPosts };
+const getText = $el => $el.text().replace(/\n\s*/g, '\n').trim();
 
-function readPosts($html, limit=10) {
-  let $articles = find($html, selectors).slice(0, limit);
+export function readPosts($html, limit=10) {
+  const $articles = find($html, selectors).slice(0, limit);
   let posts = [];
   $articles.each((_, el) => {
-    let $el = $(el);
-    let content = getContent($el);
+    const $el = $(el);
+    const content = getContent($el);
     if (!content) return;
-    let { url, timestamp } = getMetadata($el);
+    const { url, timestamp } = getMetadata($el);
     posts.push({ content, url, timestamp });
   });
   return posts;
 }
 
 function find(parent, selectors=[]) {
-  let $parent = $(parent);
+  const $parent = $(parent);
   let $elements = $();
 
   let i = 0;
-  let len = selectors.length;
+  const len = selectors.length;
   while (i < len) {
     $elements = $parent.find(selectors[i]);
     if ($elements.length > 0) return $elements;
@@ -38,12 +39,10 @@ function find(parent, selectors=[]) {
   return $elements;
 }
 
-const getText = $el => $el.text().replace(/\n\s*/g, '\n').trim();
-
 function getContent($article) {
-  let $content = $article.find('.userContent p');
-  let chunks = $content.map((_, el) => {
-    let $chunk = $(el);
+  const $content = $article.find('.userContent p');
+  const chunks = $content.map((_, el) => {
+    const $chunk = $(el);
     // remove all hidden parts
     $chunk.find('.text_exposed_hide').remove();
     // replace all <br>-s with line feeds
@@ -54,11 +53,11 @@ function getContent($article) {
 }
 
 function getMetadata($article) {
-  let $abbr = $article.find('abbr');
-  let $a = $abbr.parent();
+  const $abbr = $article.find('abbr');
+  const $a = $abbr.parent();
 
-  let url = urlJoin('https://facebook.com/', $a.attr('href'));
-  let timestamp = $abbr.attr('data-utime') * 1000;
+  const url = urlJoin('https://facebook.com/', $a.attr('href'));
+  const timestamp = $abbr.attr('data-utime') * 1000;
 
   return { url, timestamp };
 }
