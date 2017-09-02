@@ -1,3 +1,5 @@
+const { version } = require('./package.json');
+const revision = require('git-rev-sync').short();
 const rules = [{
   test: /zepto(?:\.min)?\.js$/,
   use: ['imports-loader?this=>window', 'exports-loader?Zepto']
@@ -12,7 +14,9 @@ module.exports = (options, req) => ({
     require('poi-preset-buble')()
   ],
   html: {
-    template: 'index.html'
+    version,
+    revision,
+    template: 'index.html',
   },
   sourceMap: options.mode === 'development',
   webpack(config) {
