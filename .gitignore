@@ -6,9 +6,7 @@ node_modules/
 
 # distribution folder
 dist/*
-!dist/icomoon.css
-!dist/spinkit.css
-!dist/font/
+!dist/.gitkeep
 
 # OS generated stuff
 .DS_Store
