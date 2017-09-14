@@ -16,7 +16,7 @@ const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
 
 const reMenuHeading = /^Danas u ponudi\s*:\s*/i;
-const rePrice = /\s*(\d+)?(?:kn)\s*/;
+const rePrice = /\s*(\d+)?(?:kn|\.00)\s*/;
 
 const isDailyMenu = post => reMenuHeading.test(post.content);
 
