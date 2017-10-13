@@ -65,8 +65,8 @@ function getMetadata($article) {
 }
 
 function reformatText(text = '') {
-  // adjust spaces around braces
+  // adjust spaces around interpunction chars
   return text
-    .replace(/\s*\(\s*/g, ' (')
-    .replace(/\s*\)\s*/g, ') ');
+    .replace(/\s*([(])\s*/g, ' $1')
+    .replace(/\s*([):;,.])\s*/g, '$1 ')
 }
