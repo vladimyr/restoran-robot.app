@@ -12,6 +12,18 @@ $bg-color = #e9ebee
 $timestamp-color = #90949c
 $fb-link-color = #4267b2
 
+$price-colors = {
+  '25': #78909c
+  '30': #607d8b
+  '35': #546e7a
+  '40': #455a64
+  '45': #37474f
+}
+
+for amount, color in $price-colors
+  .price.price-{amount}
+    color color
+
 .spinner
   position absolute
   font-size 0

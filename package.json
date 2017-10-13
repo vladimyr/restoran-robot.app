@@ -16,8 +16,8 @@
   "author": "vladimyr",
   "license": "MIT",
   "dependencies": {
+    "bel": "^5.1.3",
     "fecha": "^2.3.1",
-    "hyperscript": "^2.0.2",
     "pinkie-promise": "^2.0.1",
     "spinkit": "^1.2.5",
     "url-join": "^2.0.2",

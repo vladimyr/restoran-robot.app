@@ -6,9 +6,9 @@ import qs from 'querystring';
 
 const proxy = 'https://cors-proxy.now.sh';
 
-const toUpperCase = (str='') => str.toUpperCase();
+const toUpperCase = (str = '') => str.toUpperCase();
 
-export default function http(url, options={}) {
+export default function http(url, options = {}) {
   const method = toUpperCase(options.method) || 'GET';
   let headers = options.headers || [];
   headers = Object.keys(headers).map(name =>`${name}|${headers[name]}`);

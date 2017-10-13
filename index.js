@@ -5,7 +5,7 @@ window.Promise = window.Promise || require('pinkie-promise');
 import './style.styl';
 
 import $ from 'zepto';
-import h from 'hyperscript';
+import html from 'bel';
 import fecha from 'fecha';
 import http from './http';
 import { readPosts } from './scraper';
@@ -24,23 +24,31 @@ const timestampFormat = 'MMMM D [at] H:mm';
 const date = timestamp => fecha.format(new Date(timestamp), timestampFormat);
 const isToday = timestamp => (new Date()).getDate() === (new Date(timestamp)).getDate();
 
-const renderMenu = offers =>
-  h('ul.menu',
-    offers.map(({ name, price }) =>
-      h('li.offer',
-        h('span.name', name),
-        h('span.price', `${ price }kn`))));
+const renderMenu = offers => html`
+  <ul class="menu">
+  ${ offers.map(({ name, price }) => html`
+    <li class="offer">
+      <span class="name">${ name }</span>
+      <span class="price price-${ price }">${ price }kn</span>
+    </li>
+  `)}
+  </ul>
+`;
 
-const renderPost = post =>
-  h('div.post',
-    h('span.timestamp',
-      h('i.icon-clock'), date(post.timestamp)),
-    h('div.content',
-      post.offers ? renderMenu(post.offers) : post.content),
-    h('a.btn', { href: post.url, target: '_blank' },
-      'Open on Facebook'),
-    h('a.btn.btn-phone', { href: `tel:${ phone }`, target: '_blank' },
-      h('i.icon-phone'), 'Order'));
+const renderPost = post => html`
+<div class="post">
+  <span class="timestamp">
+    <i class="icon-clock"></i> ${ date(post.timestamp) }
+  </span>
+  <div class="content">
+  ${ post.offers ? renderMenu(post.offers) : post.content }
+  </div>
+  <a href="${ post.url }" target="_blank" class="btn">Open on Facebook</a>
+  <a href="tel:${ phone }" target="_blank" class="btn btn-phone">
+    <i class="icon-phone"></i> Order
+  </a>
+</div>
+`;
 
 const $spinner = $('.spinner');
 const $output = $('.output');

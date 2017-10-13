@@ -6,6 +6,7 @@ import urlJoin from 'url-join';
 const selectors = [
   '.fbUserContent', // primary
   '.fbUserPost',
+  '.fbUserStory',
   '[role=article]'  // fallback
 ];
 
@@ -24,7 +25,7 @@ export function readPosts($html, limit=10) {
   return posts;
 }
 
-function find(parent, selectors=[]) {
+function find(parent, selectors = []) {
   const $parent = $(parent);
   let $elements = $();
 
@@ -63,7 +64,7 @@ function getMetadata($article) {
   return { url, timestamp };
 }
 
-function reformatText(text='') {
+function reformatText(text = '') {
   // adjust spaces around braces
   return text
     .replace(/\s*\(\s*/g, ' (')
