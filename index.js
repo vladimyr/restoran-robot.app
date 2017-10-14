@@ -50,6 +50,13 @@ const renderPost = post => html`
 </div>
 `;
 
+const renderError = message => html`
+<div class="error">
+  <h2 class="title">Error</h2>
+  <span class="message">${ message }</span>
+</div>
+`;
+
 const $spinner = $('.spinner');
 const $output = $('.output');
 
@@ -60,6 +67,12 @@ fetchPosts(url, 5)
         .addClass(post.type)
         .toggleClass('today', isToday(post.timestamp))
         .appendTo($output));
+
+    if (posts.length === 0) {
+      $output.empty();
+      $(renderError('Failed to fetch daily offers from Facebook site.'))
+        .appendTo($output);
+    }
 
     $output.show();
     $spinner.hide();
