@@ -5,6 +5,7 @@ import urlJoin from 'url-join';
 
 const selectors = [
   '.fbUserContent', // primary
+  '.userContentWrapper',
   '.fbUserPost',
   '.fbUserStory',
   '[role=article]'  // fallback
@@ -12,7 +13,7 @@ const selectors = [
 
 const getText = $el => $el.text().replace(/\n\s*/g, '\n').trim();
 
-export function readPosts($html, limit=10) {
+export function readPosts($html, limit = 10) {
   const $articles = find($html, selectors).slice(0, limit);
   let posts = [];
   $articles.each((_, el) => {

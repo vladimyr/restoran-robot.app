@@ -15,8 +15,8 @@ const ua = `${pkg.name}/${pkg.version}`;
 const url = 'https://facebook.com/dajyst/posts';
 const phone = '+385957488338';
 
-const reMenuHeading = /^Danas u ponudi\s*:\s*/i;
-const rePrice = /\s*(\d+)?(?:kn|\.00)\s*/;
+const reMenuHeading = /^Danas u ponudi\s*:?\s*/i;
+const rePrice = /\s*(\d+)?(?:\s*kn|\.00)\s*/;
 
 const isDailyMenu = post => reMenuHeading.test(post.content);
 
@@ -54,6 +54,7 @@ const renderError = message => html`
 <div class="error">
   <h2 class="title">Error</h2>
   <span class="message">${ message }</span>
+  <a href="${ url }" target="_blank" class="btn">Open on Facebook</a>
 </div>
 `;
 
