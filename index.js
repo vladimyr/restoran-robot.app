@@ -14,12 +14,12 @@ import { trimLines, reformatText } from './helpers';
 import pkg from './package.json';
 
 const ua = `${pkg.name}/${pkg.version}`;
-const url = 'https://facebook.com/dajyst/posts';
-const phone = '+385957488338';
+const url = 'https://facebook.com/RestoranROBOT/posts';
+const phone = '+385917377064';
 
-const reMenuHeading = /^Danas u ponudi\s*:?\s*/i;
-const rePrice = /\s*(\d+)?(?:\s*kn|\.00)\s*/;
-const headingSize = 1;
+const reMenuHeading = /^Ponuda\s+dana/i;
+const rePrice = /\s*(\d+)?(?:\s*,\s*00\s*kn)\s*/;
+const headingSize = 2;
 
 const isDailyMenu = post => reMenuHeading.test(post.content);
 

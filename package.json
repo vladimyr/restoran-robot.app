@@ -1,5 +1,5 @@
 {
-  "name": "dajyst.app",
+  "name": "restoran-robot.app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "favicons:inject": "real-favicon inject ./dist/favicons.json ./dist/ ./dist/index.html",
     "favicons": "npm run favicons:generate && npm run favicons:inject",
     "clean": "del-cli dist/* !dist/.gitkeep",
-    "deploy": "npm run build && npm run favicons && surge ./dist/ https://dajyst.surge.sh",
+    "deploy": "npm run build && npm run favicons && surge ./dist/ https://restoran-robot.surge.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "vladimyr",

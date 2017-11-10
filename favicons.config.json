@@ -11,7 +11,7 @@
         "precomposedIcons": false,
         "declareOnlyDefaultIcon": true
       },
-      "appName": "Dajyst"
+      "appName": "Restoran ROBOT"
     },
     "desktopBrowser": {},
     "windows": {
@@ -27,13 +27,13 @@
           "rectangle": false
         }
       },
-      "appName": "Dajyst"
+      "appName": "Restoran ROBOT"
     },
     "androidChrome": {
       "pictureAspect": "noChange",
       "themeColor": "#ffffff",
       "manifest": {
-        "name": "Dajyst",
+        "name": "Restoran ROBOT",
         "display": "standalone",
         "orientation": "notSet",
         "onConflict": "override",
