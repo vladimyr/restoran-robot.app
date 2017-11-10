@@ -6,9 +6,11 @@ import './style.styl';
 
 import $ from 'zepto';
 import html from 'bel';
+import raw from 'bel/raw';
 import fecha from 'fecha';
 import http from './http';
 import { readPosts } from './scraper';
+import { trimLines, reformatText } from './helpers';
 import pkg from './package.json';
 
 const ua = `${pkg.name}/${pkg.version}`;
@@ -17,12 +19,18 @@ const phone = '+385957488338';
 
 const reMenuHeading = /^Danas u ponudi\s*:?\s*/i;
 const rePrice = /\s*(\d+)?(?:\s*kn|\.00)\s*/;
+const headingSize = 1;
 
 const isDailyMenu = post => reMenuHeading.test(post.content);
 
 const timestampFormat = 'MMMM D [at] H:mm';
 const date = timestamp => fecha.format(new Date(timestamp), timestampFormat);
 const isToday = timestamp => (new Date()).getDate() === (new Date(timestamp)).getDate();
+
+const renderText = content => {
+  const text = content.replace(/(?:\n)/g, '<br/>').trim();
+  return html`<p class="raw">${ raw(text) }</p>`;
+};
 
 const renderMenu = offers => html`
   <ul class="menu">
@@ -41,7 +49,7 @@ const renderPost = post => html`
     <i class="icon-clock"></i> ${ date(post.timestamp) }
   </span>
   <div class="content">
-  ${ post.offers ? renderMenu(post.offers) : post.content }
+  ${ post.offers ? renderMenu(post.offers) : renderText(post.content) }
   </div>
   <a href="${ post.url }" target="_blank" class="btn">Open on Facebook</a>
   <a href="tel:${ phone }" target="_blank" class="btn btn-phone">
@@ -92,10 +100,14 @@ function parsePost(post) {
     return post;
   }
 
-  const menu = post.content.replace(reMenuHeading, '');
+  const menu = extractMenu(post);
   post.offers = parseMenu(menu);
   post.type = 'menu';
   return post;
+}
+
+function extractMenu(post) {
+  return trimLines(post.content, headingSize);
 }
 
 function parseMenu(menu) {
@@ -106,7 +118,7 @@ function parseMenu(menu) {
   const len = tokens.length - 1;
   while (i < len) {
     offers.push({
-      name: tokens[i],
+      name: reformatText(tokens[i]),
       price: parseInt(tokens[i + 1], 10)
     });
     i += 2;
