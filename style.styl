@@ -1,5 +1,4 @@
 @import "~spinkit/css/spinners/3-wave.css"
-@import "font/icomoon.css"
 
 $post-margin = 20px
 
@@ -63,6 +62,9 @@ html, body
   border-bottom 1px solid $fb-link-color
   font-size 12px
   font-weight bold
+  line-height 12px
+  vertical-align middle
+  display inline-block
 
   &:hover
     background-color $fb-link-color
@@ -75,6 +77,10 @@ html, body
   border-color #e5e6e9 #dfe0e4 #d0d1d5
   border-radius 3px
   background-color #fff
+
+  .icon
+    font-size inherit
+    vertical-align top
 
 .error
   @extend .card
@@ -101,6 +107,9 @@ html, body
   .timestamp
     color $timestamp-color
     font-size 12px
+    line-height 12px
+    vertical-align middle
+    display inline-block
 
   .content
     color #5f5d5d

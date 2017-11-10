@@ -46,14 +46,14 @@ const renderMenu = offers => html`
 const renderPost = post => html`
 <div class="post">
   <span class="timestamp">
-    <i class="icon-clock"></i> ${ date(post.timestamp) }
+    <i class="icon material-icons">access_time</i> ${ date(post.timestamp) }
   </span>
   <div class="content">
   ${ post.offers ? renderMenu(post.offers) : renderText(post.content) }
   </div>
   <a href="${ post.url }" target="_blank" class="btn">Open on Facebook</a>
   <a href="tel:${ phone }" target="_blank" class="btn btn-phone">
-    <i class="icon-phone"></i> Order
+    <i class="icon material-icons">call</i> Order
   </a>
 </div>
 `;
