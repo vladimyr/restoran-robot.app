@@ -18,7 +18,7 @@ const url = 'https://facebook.com/RestoranROBOT/posts';
 const phone = '+385917377064';
 
 const reMenuHeading = /^Ponuda\s+dana/i;
-const rePrice = /\s*(\d+)?(?:\s*,\s*00\s*kn)\s*/;
+const rePrice = /\s*(\d+)?(?:\s*(?:,\s*00)?\s*kn)\s*/;
 const headingSize = 2;
 
 const isDailyMenu = post => reMenuHeading.test(post.content);
